@@ -1,0 +1,29 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KHAINTPH16089/assignment.git"
+  },
+  "keywords": [
+    "nodeJS"
+  ],
+  "author": "khaintph16089",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KHAINTPH16089/assignment/issues"
+  },
+  "homepage": "https://github.com/KHAINTPH16089/assignment#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
