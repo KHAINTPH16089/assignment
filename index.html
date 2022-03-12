@@ -7,12 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <ul id="show">
+        
+        </ul>
+    </div>
     
     <script>
-        fetch('http://localhost:3000/api/products').then(data => data.json())
+        fetch('http://localhost:3001/api/products').then(data => data.json())
         .then( sanpham => {
-            console.log(sanpham);
+            document.querySelector("#show").innerHTML = sanpham.map( (e) => {
+                return `
+                <li>${e.name}</li>
+                `
+            }).join("");
+            
         })
     </script>
 </body>

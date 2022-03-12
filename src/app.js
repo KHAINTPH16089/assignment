@@ -1,19 +1,29 @@
-const express = require('express');
+//const express = require("express");
+//const cors = require('cors');
+import express from "express";
+import cors from "cors";
+import product from "./routes/products";
+import morgan from "morgan";
+
+
 const app = express();
-const port = 3001;
+//middleware
+app.use(cors());
+app.use(morgan('tiny'));
+app.use(express.json())
 
-app.get('/', (req, res) => res.send('Hello world!'));
+//route
+app.use('/api', product);
 
-app.get('/api/products', (req,res) => {
-    const url = req.url;
-    console.log(url);
-    const data = [
-        { id: 1, name: "product A" },
-        { id: 2, name: "product B" },
-        { id: 3, name: "product C" },
-        { id: 4, name: "product D" }
-    ];
-    res.end(JSON.stringify(data));
+app.get('/', (req, res) => {
+    res.send("<h1>Home Page</h1>");
+})
+app.get('/user', (req, res) => {
+    res.send("<h1>Home Page</h1>");
 })
 
-app.listen(port, () => console.log('bạn đang chạy ở http://localhost:'+port));
+//connet
+const POST = 3001;
+app.listen(POST, () => {
+    console.log("server của bạn đang chạy cổng", POST);
+})
