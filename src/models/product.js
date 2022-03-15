@@ -1,6 +1,6 @@
-import mongoose, { Scheam } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const product = new Scheam({
+const product = new Schema({
     name: {
         type: String,
         minlength: 5,
