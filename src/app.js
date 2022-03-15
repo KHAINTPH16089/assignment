@@ -16,13 +16,13 @@ app.use(morgan('tiny'));
 app.use(express.json())
 
 //route
-readdirSync(__dirname + "/routes").forEach(file => app.use((fileName) => {
-    import("./routes"+ fileName)
-    .then(({default: router}) => router.default)
-    .then((router) => {
-        app.use("/api", router);
-    })
-}));
+readdirSync(__dirname + "/routes").forEach((fileName) => {
+    import("./routes/" + fileName)
+        .then(({ default: router }) => router.default)
+        .then((router) => {
+            app.use("/api", router);
+        });
+});
 
 //mongoose db
 mongoose.connect("mongodb://localhost:27017/we16310")
