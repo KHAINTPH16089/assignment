@@ -1,5 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
+const { ObjectId } = mongoose.Types;
+
 const product = new Schema({
     name: {
         type: String,
@@ -9,7 +11,11 @@ const product = new Schema({
     price: {
         type: Number,
         require: true
+    },
+    category: {
+        type: ObjectId,
+        required: true
     }
-})
+},{ timestamps: true })
 
 export default mongoose.model("Product", product);

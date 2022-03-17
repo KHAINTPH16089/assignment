@@ -1,9 +1,10 @@
-import category from "../models/category";
+import Category from "../models/category";
+import Product from "../models/product";
 
 export const create = async (req, res) =>{
     try {
-        const categorys = await new category(req.body).save();
-        res.json(categorys);
+        const category = await new Category(req.body).save();
+        res.json(category);
     } catch (error) {
         res.status(400).json({
             error: "không thêm được danh mục"
@@ -13,8 +14,8 @@ export const create = async (req, res) =>{
 
 export const getAll = async (req, res) =>{
     try {
-        const categorys = await category.find({}).exec();
-        res.json(categorys);
+        const category = await Category.find({}).exec();
+        res.json(category);
     } catch (error) {
         res.status(400).json({
             error: "không thêm được danh mục"
@@ -23,8 +24,11 @@ export const getAll = async (req, res) =>{
 }
 export const get = async (req, res) =>{
     try {
-        const categorys = await category.findOne({_id: req.params.id}).exec();
-        res.json(categorys);
+        const category = await Category.findOne({_id: req.params.id}).exec();
+        const product = await Product.find({ category }).select("-category").exec();
+        res.json({
+            category, product
+        });
     } catch (error) {
         res.status(400).json({
             error: "không tìm được danh mục"
@@ -34,8 +38,8 @@ export const get = async (req, res) =>{
 
 export const remove = async (req, res) =>{
     try {
-        const categorys = await category.findOneAndDelete({_id: req.params.id}).exec();
-        res.json(categorys);
+        const category = await Category.findOneAndDelete({_id: req.params.id}).exec();
+        res.json(category);
     } catch (error) {
         res.status(400).json({
             error: "không tìm được danh mục"
@@ -48,8 +52,8 @@ export const update = async (req, res) =>{
     const update = {name: "category A update"}
 
     try {
-        const categorys = await category.findOneAndUpdate(conditions, update).exec();
-        res.json(categorys);
+        const category = await Category.findOneAndUpdate(conditions, update).exec();
+        res.json(category);
     } catch (error) {
         res.status(400).json({
             error: "không tìm được danh mục"
