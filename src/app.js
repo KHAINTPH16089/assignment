@@ -1,5 +1,3 @@
-//const express = require("express");
-//const cors = require('cors');
 import express from "express";
 import cors from "cors";
 import product from "./routes/products";
