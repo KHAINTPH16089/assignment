@@ -13,7 +13,7 @@ export const list = async (req, res) => {
 export const create = async(req, res) => {
     try {
         const product = await new Product(req.body).save();
-        res.json();
+        res.json(product);
     } catch (error) {
         res.status(400).json({
             error: "không thêm được sản phẩm"

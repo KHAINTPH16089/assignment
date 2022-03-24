@@ -1,9 +1,22 @@
 import User from "../models/user";
 
 export const signup = async (req, res) => {
+    const { userName, email, password} = req.body;
     try {
-        const user = await new User(req.body).save();
-        res.json(user);
+        const existUser = await User.findOne({email}).exec();
+        if(existUser){
+            res.json({
+                message: "email đã tồn tại"
+            })
+        }
+        const users = await new User(req.body).save();
+        res.json({
+            user: {
+                _id: users._id,
+                userName: users.userName,
+                email: users.email
+            }
+        });
     } catch (error) {
         res.status(400).json({
             error: "không đăng kí được user"
@@ -12,9 +25,30 @@ export const signup = async (req, res) => {
 }
 
 export const signin = async (req, res) => {
+    const {email, password} = req.body
     try {
-        const user = await User.findOne({email: req.params.email}).exec();
-        res.json(user);
+        
+        const users = await User.findOne({email}).exec();
+        
+        if(!users){
+            res.status(400).json({
+                message: "email không tồn tại"
+            })
+        }
+        
+        if(!users.authenticate(password)){
+            res.status(400).json({
+                message: "Mật khẩu không đúng"
+            })
+        }
+        console.log(users);
+        res.json({
+            user: {
+                _id: users._id,
+                userName: users.userName,
+                email: users.email
+            }
+        });
     } catch (error) {
         res.status(400).json({
             error: "đăng nhập không thành công user"
