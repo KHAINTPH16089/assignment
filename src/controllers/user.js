@@ -41,7 +41,6 @@ export const signin = async (req, res) => {
                 message: "Mật khẩu không đúng"
             })
         }
-        console.log(users);
         res.json({
             user: {
                 _id: users._id,
@@ -52,6 +51,16 @@ export const signin = async (req, res) => {
     } catch (error) {
         res.status(400).json({
             error: "đăng nhập không thành công user"
+        })
+    }
+}
+export const getAll = async (req, res) => {
+    try {
+        const user = await User.find({}).exec();
+        res.json(user);
+    } catch (error) {
+        res.status(400).json({
+            error: "không tìm thấy sản phẩm"
         })
     }
 }
