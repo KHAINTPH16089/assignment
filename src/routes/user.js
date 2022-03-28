@@ -1,10 +1,15 @@
 import { Router } from "express";
-import { signup, signin, getAll } from "../controllers/user";
+import { signup, signin, getAll, get} from "../controllers/user";
+import { isAdmin, isAuth, requiredSignin } from "../middlewares/checkAuth";
+import { userById } from "../middlewares/user";
 
 const router = Router();
 
 router.post("/signup", signup);
 router.post("/signin", signin);
-router.get("/user", getAll);
+router.get("/user/:userId", requiredSignin, isAuth, get);
+router.get("/users", requiredSignin, isAuth, isAdmin, getAll);
+
+router.param('userId', userById);
 
 export default router;

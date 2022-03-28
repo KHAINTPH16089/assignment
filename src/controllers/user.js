@@ -1,4 +1,5 @@
 import User from "../models/user";
+import jwt from "jsonwebtoken";
 
 export const signup = async (req, res) => {
     const { userName, email, password} = req.body;
@@ -41,7 +42,9 @@ export const signin = async (req, res) => {
                 message: "Mật khẩu không đúng"
             })
         }
+        const token = jwt.sign({_id: users._id}, "123456", { noTimestamp: true })
         res.json({
+            token,
             user: {
                 _id: users._id,
                 userName: users.userName,
@@ -57,6 +60,16 @@ export const signin = async (req, res) => {
 export const getAll = async (req, res) => {
     try {
         const user = await User.find({}).exec();
+        res.json(user);
+    } catch (error) {
+        res.status(400).json({
+            error: "không tìm thấy sản phẩm"
+        })
+    }
+}
+export const get = async (req, res) => {
+    try {
+        const user = await User.findOne({_id: req.params.userId}).exec();
         res.json(user);
     } catch (error) {
         res.status(400).json({

@@ -1,11 +1,10 @@
 import { Router } from "express";
 import { create, getAll, get, remove, update } from "../controllers/category";
-import { checkAuth } from "../middlewares/checkAuth";
 
 const router = Router();
 
-router.post("/category", checkAuth, create);
-router.get("/categorys", checkAuth, getAll);
+router.post("/category", create);
+router.get("/categorys", getAll);
 router.get("/category/:id", get);
 router.delete("/category/:id", remove);
 router.put("/category/:id", update);
