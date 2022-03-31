@@ -1,18 +1,20 @@
 import express from "express";
 import cors from "cors";
-import product from "./routes/products";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import { readdirSync } from "fs";
-import path, { dirname } from "path";
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
 
+import product from "./routes/products";
 
 const app = express();
+const swaggerJSDocs = YAML.load("./api.yaml")
 //middleware
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json())
-
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJSDocs));
 //route
 readdirSync(__dirname + "/routes").forEach((fileName) => {
     import("./routes/" + fileName)

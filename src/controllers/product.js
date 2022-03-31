@@ -1,8 +1,13 @@
 import Product from "../models/product";
 
 export const list = async (req, res) => {
+    const limitNumber = 20;
+    const limit = req.query.limit ? req.query.limit : limitNumber;
+    const sortBy = req.query.sortBy ? req.query.sortBy : '';
+    const order = req.query.order ? req.query.order : '';
+
     try {
-        const products = await Product.find({}).exec();
+        const products = await Product.find({}).sort(sortBy).exec();
         res.json(products);
     } catch (error) {
         res.status(400).json({
