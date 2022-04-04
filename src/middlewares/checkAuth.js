@@ -8,8 +8,6 @@ export const requiredSignin = expressJWT({
 
 export const isAuth = (req, res, next) => {
     const status = req.profile._id == req.auth._id;
-    console.log(req.profile._id);
-    console.log(req.auth._id);
     if(!status){
         res.status(401).json({
             message: "bạn không có quyền truy cập"

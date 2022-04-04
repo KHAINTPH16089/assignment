@@ -5,7 +5,6 @@ const { ObjectId } = mongoose.Types;
 const product = new Schema({
     name: {
         type: String,
-        minlength: 5,
         require: true
     },
     price: {
@@ -17,5 +16,9 @@ const product = new Schema({
         required: true
     }
 },{ timestamps: true })
+product.index({name: "text"})
 
-export default mongoose.model("Product", product);
+const Product = mongoose.model("Product", product);
+
+Product.createIndexes({name: "text"})
+export default Product;
