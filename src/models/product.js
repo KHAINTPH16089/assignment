@@ -11,6 +11,18 @@ const product = new Schema({
         type: Number,
         require: true
     },
+    image: {
+        type: String,
+        required: true
+    },
+    desc: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: Number,
+        default: 1
+    },
     category: {
         type: ObjectId,
         required: true

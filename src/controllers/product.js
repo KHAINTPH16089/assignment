@@ -2,19 +2,18 @@ import Product from "../models/product";
 
 export const list = async (req, res) => {
     const perPageNumber = 20;
-    const perPage = req.query.perPage ? req.query.perPage : perPageNumber;
+    const perPage = req.query.perPage ? parseInt(req.query.perPage) : perPageNumber;
     const sortBy = req.query.sortBy ? req.query.sortBy : '';
     const page = req.query.page ? parseInt(req.query.page)  : 1;
-    const price = req.query.price ? req.query.price : 0;
-    const search = req.query.search ? req.query.search : 0;
-    //sort(sort) tăng dần && -sort giảm dần , }
+    const price = req.query.price ? parseInt(req.query.price) : 0;
+    const search = req.query.search ? req.query.search : '';
     const skip = (page -1) * perPage;
-    console.log(typeof(price));
+
     try {
         const product = await Promise.allSettled([
-            Product.find( search ? {$text : { $search: search}} : null, price ? { 'price' : {$gt: price }}: "").skip(skip).limit(perPage).sort(sortBy).exec(),
+            Product.find({ ...(search ? {$text: { $search: search}} : undefined), price: price ? {$gt: price }: undefined}).skip(skip).limit(perPage).sort(sortBy).exec(),
             Product.countDocuments().exec()
-        ])
+        ]);
         res.json(product);
     } catch (error) {
         res.status(400).json({
