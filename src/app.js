@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { readdirSync } from "fs";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
+import fileUpload from "express-fileupload";
 
 import product from "./routes/products";
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json())
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJSDocs));
+app.use(fileUpload())
 //route
 readdirSync(__dirname + "/routes").forEach((fileName) => {
     import("./routes/" + fileName)
