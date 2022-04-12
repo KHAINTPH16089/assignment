@@ -15,6 +15,10 @@ const product = new Schema({
         type: String,
         required: true
     },
+    public_id: {
+        type: String,
+        required: true
+    },
     desc: {
         type: String,
         required: true

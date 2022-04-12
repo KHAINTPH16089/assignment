@@ -25,7 +25,7 @@ export const getAll = async (req, res) =>{
 export const get = async (req, res) =>{
     try {
         const category = await Category.findOne({_id: req.params.id}).exec();
-        const product = await Product.find({ category }).select("-category").exec();
+        const product = await Product.find({ category }).limit(3).select("-category").exec();
         res.json({
             category, product
         });
