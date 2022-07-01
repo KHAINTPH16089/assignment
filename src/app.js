@@ -31,6 +31,7 @@ mongoose.connect("mongodb://localhost:27017/we16310")
     .then(()=>{ console.log("kết nối db thành công"); })
     .catch( error => {console.log(error);})
 //connet
+
 const POST = 3001;
 app.listen(POST, () => {
     console.log("server của bạn đang chạy cổng", POST);
