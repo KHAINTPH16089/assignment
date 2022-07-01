@@ -11,6 +11,9 @@ const product = new Schema({
         type: Number,
         require: true
     },
+    sale_price: {
+        type: Number
+    },
     image: {
         type: String,
         required: true
@@ -20,8 +23,7 @@ const product = new Schema({
         required: true
     },
     desc: {
-        type: String,
-        required: true
+        type: String
     },
     status: {
         type: Number,

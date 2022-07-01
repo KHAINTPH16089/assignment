@@ -4,6 +4,6 @@ import { remove, upload } from "../controllers/upload";
 const router = Router();
 
 router.post("/upload", upload);
-router.get("/delete/:id", remove);
+router.get("/upload/:id", remove);
 
 export default router;

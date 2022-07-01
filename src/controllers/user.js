@@ -78,3 +78,26 @@ export const get = async (req, res) => {
         })
     }
 }
+export const remove = async (req, res) => {
+    try {
+        const user = await User.findOneAndDelete({_id: req.params.userId}).exec();
+        res.json(user);
+    } catch (error) {
+        res.status(400).json({
+            error: "không tìm thấy sản phẩm"
+        })
+    }
+}
+
+export const update = async (req, res) => {
+    const conditions = {_id: req.params.userId};
+    const update = req.body;
+    try {
+        const user = await User.findOneAndUpdate(conditions, update).exec();
+        res.json(user);
+    } catch (error) {
+        res.status(400).json({
+            error: "không tìm thấy sản phẩm"
+        })
+    }
+}

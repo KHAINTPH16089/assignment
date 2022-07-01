@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
 const order = mongoose.Schema({
     name:{
@@ -17,13 +17,16 @@ const order = mongoose.Schema({
         type: String,
         require: true
     },
+    node:{
+        type: String
+    },
     total:{
         type: Number,
         require: true
     },
     status:{
-        type: Number,
-        default: 0
+        type: ObjectId,
+        default: "62b1cba8298a3e26f57d1583"
     }
 }, {timestamps: true})
 export default mongoose.model("Order", order);

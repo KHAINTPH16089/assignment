@@ -10,14 +10,21 @@ export const list = async (req, res) => {
     const skip = (page -1) * perPage;
 
     try {
-        const product = await Promise.allSettled([
-            Product.find({ ...(search ? {$text: { $search: search}} : undefined), price: price ? {$gt: price }: undefined}).skip(skip).limit(perPage).sort(sortBy).exec(),
-            Product.countDocuments().exec()
-        ]);
+        const product = await Product.find({ ...(search ? {$text: { $search: search}} : undefined), price: price ? {$gt: price }: undefined}).skip(skip).limit(perPage).sort(sortBy).exec();
         res.json(product);
     } catch (error) {
         res.status(400).json({
             error: "không tìm thấy sản phẩm"
+        })
+    }
+}
+export const count = async(req, res) => {
+    try {
+        const product = await Product.countDocuments().exec()
+        res.json(product);
+    } catch (error) {
+        res.status(400).json({
+            error: "không thêm được sản phẩm"
         })
     }
 }

@@ -17,10 +17,6 @@ const OrderDetail = mongoose.Schema({
     desc: {
         type: String
     },
-    status: {
-        type: Number,
-        default: 1
-    },
     quantity: {
         type: Number,
         require: true
