@@ -6,8 +6,11 @@ import { readdirSync } from "fs";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 import fileUpload from "express-fileupload";
-
+import order from "./routes/order";
 import product from "./routes/products";
+import upload from "./routes/upload";
+import category from "./routes/category";
+import user from "./routes/user";
 
 const app = express();
 const swaggerJSDocs = YAML.load("./api.yaml")
@@ -18,13 +21,11 @@ app.use(express.json())
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJSDocs));
 app.use(fileUpload())
 //route
-readdirSync(__dirname + "/routes").forEach((fileName) => {
-    import("./routes/" + fileName)
-        .then(({ default: router }) => router.default)
-        .then((router) => {
-            app.use("/api", router);
-        });
-});
+app.use('/api', product)
+app.use('/api', order)
+app.use('/api', upload)
+app.use('/api', category)
+app.use('/api', user)
 
 //mongoose db
 mongoose.connect("mongodb://localhost:27017/we16310")
