@@ -6,11 +6,11 @@ import { readdirSync } from "fs";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 import fileUpload from "express-fileupload";
-import order from "./routes/order";
-import product from "./routes/products";
-import upload from "./routes/upload";
-import category from "./routes/category";
-import user from "./routes/user";
+import order from "./src/routes/order";
+import product from "./src/routes/products";
+import upload from "./src/routes/upload";
+import category from "./src/routes/category";
+import user from "./src/routes/user";
 
 const app = express();
 const swaggerJSDocs = YAML.load("./api.yaml")
