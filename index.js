@@ -13,7 +13,6 @@ import category from "./src/routes/category.js";
 import user from "./src/routes/user.js";
 
 const app = express();
-const swaggerJSDocs = YAML.load("./api.yaml")
 //middleware
 app.use(cors());
 app.use(morgan('tiny'));
