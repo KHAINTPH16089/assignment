@@ -1,5 +1,5 @@
 import axios from "axios";
-import {cloudinary} from "../utils/cloudinary"
+import cloudinary from "../utils/cloudinary.js"
 export const upload = async (req, res) =>{
     try {
         const file = req.body.data

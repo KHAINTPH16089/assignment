@@ -1,5 +1,6 @@
-import mongoose, { ObjectId } from "mongoose";
+import mongoose from "mongoose";
 
+const { ObjectId } = mongoose.Types;
 const order = mongoose.Schema({
     name:{
         type: String,
@@ -26,7 +27,7 @@ const order = mongoose.Schema({
     },
     status:{
         type: ObjectId,
-        default: "62b1cba8298a3e26f57d1583"
+        default: "62c3f0c8e6d7b881ee334826"
     }
 }, {timestamps: true})
 export default mongoose.model("Order", order);

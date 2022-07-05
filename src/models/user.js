@@ -1,8 +1,8 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose from "mongoose";
 import { createHmac } from "crypto";
 import { v4 as uuidv4 } from "uuid";
 
-const user = new Schema({
+const user = mongoose.Schema({
     userName: {
         type: String,
         required: true

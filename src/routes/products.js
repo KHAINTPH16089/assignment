@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { create,get, remove, update, list, count} from "../controllers/product";
-import { isAdmin, isAuth, requiredSignin } from "../middlewares/checkAuth";
-import { userById } from "../middlewares/user";
+import { create,get, remove, update, list, count} from "../controllers/product.js";
+import { userById } from "../middlewares/user.js";
 
 const router = Router();
 

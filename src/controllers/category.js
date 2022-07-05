@@ -1,6 +1,6 @@
-import Category from "../models/category";
-import Status from "../models/status";
-import Product from "../models/product";
+import Category from "../models/category.js";
+import Status from "../models/status.js";
+import Product from "../models/product.js";
 
 export const create = async (req, res) =>{
     try {

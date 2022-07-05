@@ -6,11 +6,11 @@ import { readdirSync } from "fs";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 import fileUpload from "express-fileupload";
-import order from "./src/routes/order";
-import product from "./src/routes/products";
-import upload from "./src/routes/upload";
-import category from "./src/routes/category";
-import user from "./src/routes/user";
+import order from "./src/routes/order.js";
+import product from "./src/routes/products.js";
+import upload from "./src/routes/upload.js";
+import category from "./src/routes/category.js";
+import user from "./src/routes/user.js";
 
 const app = express();
 const swaggerJSDocs = YAML.load("./api.yaml")
@@ -28,7 +28,7 @@ app.use('/api', category)
 app.use('/api', user)
 
 //mongoose db
-mongoose.connect("mongodb://localhost:27017/we16310")
+mongoose.connect("mongodb+srv://khaintph16089:kazuo002@cluster0.fqkqf4g.mongodb.net/angular")
     .then(()=>{ console.log("kết nối db thành công"); })
     .catch( error => {console.log(error);})
 //connet

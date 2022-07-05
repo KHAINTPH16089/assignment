@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { signup, signin, getAll, get, remove, update} from "../controllers/user";
-import { isAdmin, isAuth, requiredSignin } from "../middlewares/checkAuth";
-import { userById } from "../middlewares/user";
+import { signup, signin, getAll, get, remove, update} from "../controllers/user.js";
+import { isAdmin, isAuth, requiredSignin } from "../middlewares/checkAuth.js";
+import { userById } from "../middlewares/user.js";
 
 const router = Router();
 

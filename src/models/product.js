@@ -1,8 +1,8 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const { ObjectId } = mongoose.Types;
 
-const product = new Schema({
+const product = mongoose.Schema({
     name: {
         type: String,
         require: true
